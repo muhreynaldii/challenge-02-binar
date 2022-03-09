@@ -1,3 +1,5 @@
+// Muhammad Reynaldi
+
 function checkEmail(email) {
     let str = /\S+@\S+\.\S+/;
     if(email == null){

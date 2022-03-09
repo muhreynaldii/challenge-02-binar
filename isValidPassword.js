@@ -1,3 +1,5 @@
+// Muhammad Reynaldi
+
 function isValidPassword(pass) {
     let str = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if(pass == null){
