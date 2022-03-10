@@ -2,17 +2,10 @@
 
 function isValidPassword(pass) {
     let str = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    if(pass == null){
-        return "Error: Tidak ada isinya?";
-    }
-    else{
-        if (typeof pass !== "string") {
-            return "Error: Tipe Data Salah";
-        }
-        else{
-            return str.test(pass);
-        }
-    }
+    if (pass == null) return "Error: Tidak ada isinya?";
+    if (typeof pass !== "string") return "Error: Tipe Data Salah";
+
+    return str.test(pass);
 }
 
 console.log(isValidPassword('Meong2021'));

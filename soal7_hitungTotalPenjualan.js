@@ -28,21 +28,12 @@ const dataPenjualanPakAldi = [
   ]
 
   function HitungTotalPenjualan(dataPenjualan) {
-    if(dataPenjualan == null){
-        return "Error: Tidak ada isinya?";
-    }
-    else{
-        if (typeof dataPenjualan !== "object") {
-            return "Error: Tipe Data Salah";
-        }
-        else{
-            const nilaiAwal = 0;
-            return dataPenjualan.reduce(
-                (prev,curr) => prev + curr.totalTerjual,
-                nilaiAwal
-              );
-            }
-        }
+    if(dataPenjualan == null)return "Error: Tidak ada isinya?";
+    if (typeof dataPenjualan !== "object") return "Error: Tipe Data Salah";
+
+        const nilaiAwal = 0;
+
+        return dataPenjualan.reduce((prev,curr) => prev + curr.totalTerjual,nilaiAwal);
     }
 
 console.log(HitungTotalPenjualan(dataPenjualanPakAldi));
