@@ -39,7 +39,6 @@
     },
   ];
 
-
 function getInfoPenjualan(dataPenjualan){
   if(dataPenjualan == null) return "Error: Tidak ada isinya?";
   if (typeof dataPenjualan !== "object") return "Error: Tipe Data Salah"
@@ -47,7 +46,12 @@ function getInfoPenjualan(dataPenjualan){
         const totalHargaJual = dataPenjualan.reduce((prev,curr) => prev + (curr.hargaJual * curr.totalTerjual),0);
         const totalHargaModal = dataPenjualan.reduce((prev,curr) => prev + (curr.hargaBeli * (curr.totalTerjual + curr.sisaStok)),0);
         const produkBukuTerlaris = dataPenjualan.reduce((prev,curr) => curr.totalTerjual > (prev.totalTerjual || 0) ? curr : prev.namaProduk);
-        const penulisTerlaris = dataPenjualan.reduce((prev,curr) => curr.totalTerjual > (prev.totalTerjual || 0) ? curr : prev.penulis)
+
+        const arrPenulis = dataPenjualan.map(item => item.penulis).filter((item, index, arr) => arr.indexOf(item) == index);
+
+        const terjualBuku = arrPenulis.reduce((acc, curr) => (acc[curr] = dataPenjualan.map(item => item.penulis == curr ? item.totalTerjual : 0).reduce(((acc, curr) => acc + curr), 0), acc), {});
+
+        const penulisTerlaris = Object.keys(terjualBuku).find(item => terjualBuku[item] === Math.max(...Object.values(terjualBuku)));
 
         const persenUntung = totalHargaJual/ totalHargaModal * 100 - 100;
         const persentaseKeuntungan = persenUntung.toFixed(2) + "%";
